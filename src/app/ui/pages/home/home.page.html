@@ -16,5 +16,21 @@
   <div id="container">
     <strong>Ready to create an app?</strong>
     <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <ion-button (click)="show()">Exibir Nome</ion-button>
   </div>
+  <!-- <div *ngFor="let todoList of todoLists | async; trackBy: identifyList">
+    <itemlist [todoList]="todoList"></itemlist>
+  </div> -->
+  <!-- <label>
+    Add new list:
+    <input
+      autocomplete="off"
+      type="text"
+      id="name"
+      #name
+      [(ngModel)]="listName"
+    />
+  </label>
+  <button type="submit" (click)="addNewList()">Add new list</button> -->
+
 </ion-content>
