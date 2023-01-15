@@ -1,29 +1,24 @@
-import { Component } from '@angular/core';
-import { SQLite, SQLiteObject } from '@awesome-cordova-plugins/sqlite/ngx';
+import { Component, OnInit } from '@angular/core';
+import "reflect-metadata";
+import { OrmProvider } from './core/db/sqlite/typeorm/orm/orm';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
-export class AppComponent {
-  constructor(private sqlite: SQLite) { 
-    this.query();
+
+export class AppComponent implements OnInit {
+  constructor(
+    private orm: OrmProvider
+  ) {
   }
 
-  
-  query(): any {
-    this.sqlite.create({
-      name: 'marketplace-mobile.db',
-      location: 'default'
-    })
-      .then((db: SQLiteObject) => {
+  async ngOnInit(): Promise<void> {
+    const sqliteConnection = await this.orm.initialize();
 
-
-        db.executeSql('create table danceMoves(name VARCHAR(32))', [])
-          .then(() => console.log('Executed SQL'))
-          .catch(e => console.log(e));
-      })
-      .catch(e => console.log(e));
+    window.onbeforeunload = () => {
+      sqliteConnection.closeAllConnections();
+    };
   }
 }

@@ -7,9 +7,17 @@
     "ng": "ng",
     "start": "ionic cap run android --external -livereload",
     "build": "ng build",
+    "install": "ionic capacitor copy android && cd android && ./gradlew assembleDebug && ./gradlew installDebug && cd ..",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "entity:create": "./node_modules/.bin/ts-node ./node_modules/.bin/typeorm entity:create -n",
+    "migrate:generate": "./node_modules/.bin/ts-node ./node_modules/.bin/typeorm migration:generate -n",
+    "migrate:run": "./node_modules/.bin/ts-node ./node_modules/.bin/typeorm migration:run",
+    "migrate:revert": "./node_modules/.bin/ts-node ./node_modules/.bin/typeorm migration:revert"
+  },
+  "config": {
+    "ionic_uglifyjs": "./config/uglifyjs.config.js"
   },
   "private": true,
   "dependencies": {
@@ -19,7 +27,7 @@
     "@angular/platform-browser": "^15.0.0",
     "@angular/platform-browser-dynamic": "^15.0.0",
     "@angular/router": "^15.0.0",
-    "@awesome-cordova-plugins/sqlite": "^6.3.0",
+    "@capacitor-community/sqlite": "^4.6.1-1",
     "@capacitor/android": "4.6.1",
     "@capacitor/app": "4.1.1",
     "@capacitor/core": "4.6.1",
@@ -27,10 +35,10 @@
     "@capacitor/keyboard": "4.1.0",
     "@capacitor/status-bar": "4.1.1",
     "@ionic/angular": "^6.1.9",
-    "cordova-sqlite-storage": "^6.1.0",
     "ionicons": "^6.0.3",
-    "rxjs": "~7.5.0",
+    "reflect-metadata": "^0.1.13",
     "tslib": "^2.3.0",
+    "typeorm": "^0.3.11",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
@@ -46,7 +54,7 @@
     "@capacitor/cli": "4.6.1",
     "@ionic/angular-toolkit": "^6.0.0",
     "@types/jasmine": "~4.0.0",
-    "@types/node": "^12.11.1",
+    "@types/node": "^12.20.55",
     "@typescript-eslint/eslint-plugin": "5.3.0",
     "@typescript-eslint/parser": "5.3.0",
     "eslint": "^7.6.0",
@@ -55,13 +63,14 @@
     "eslint-plugin-prefer-arrow": "1.2.2",
     "jasmine-core": "~4.3.0",
     "jasmine-spec-reporter": "~5.0.0",
+    "jeep-sqlite": "^1.6.9",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage": "~2.2.0",
     "karma-coverage-istanbul-reporter": "~3.0.2",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
-    "ts-node": "~8.3.0",
+    "ts-node": "^10.9.1",
     "typescript": "~4.8.4"
   },
   "description": "An Ionic project"

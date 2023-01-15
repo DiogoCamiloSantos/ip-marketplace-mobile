@@ -1,5 +1,6 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import "reflect-metadata";
 
 @Component({
     selector: 'page-begin',
@@ -10,12 +11,12 @@ export class BeginPage {
     constructor(
         public navCtrl: NavController
     ) {
-        // this.storage.create();
     }
 
     advance() {
-        // this.storage.set('teste', "Diogo Camilo");
         this.navCtrl.navigateForward("home").then();
     }
+
+
 
 }
