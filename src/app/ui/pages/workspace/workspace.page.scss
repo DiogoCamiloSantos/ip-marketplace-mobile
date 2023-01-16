@@ -1,0 +1,73 @@
+@import "../../../../assets/styles/mixin";
+@import "../../../../theme/variables.scss";
+
+  .search {
+    border-bottom: 2px solid #5CBB4F;
+
+    input {
+      padding: 15px;
+      width: 100%;
+      border: 0;
+      height: 90px;
+      font-size: 50px;
+      color: #5cbb4f;
+    }
+
+    @include inputPlaceholder() {
+      color: rgba(92, 187, 79, .3);
+      font-weight: 500;
+    }
+  }
+
+  .logged {
+    ion-label {
+      font-weight: 600 !important;
+
+      span {
+        display: block;
+        font-size: 14px;
+        font-weight: 400;
+        margin-top: 5px;
+      }
+    }
+
+    ion-icon {
+      opacity: 1;
+    }
+  }
+
+  ion-list {
+    [ion-item] {
+      .label {
+        color: rgba(0, 0, 0, .87);
+        font-size: 25px;
+        font-weight: 400;
+
+        margin-top: 25px;
+        margin-bottom: 25px;
+
+      }
+
+      ion-icon {
+        opacity: .37;
+        color: rgba(0, 0, 0, .87);
+        fill: rgba(0, 0, 0, .87);
+
+        &[aria-label] {
+          &:before {
+            content: '';
+            background: no-repeat center;
+            background-size: auto 13px;
+            height: 24px;
+            width: 24px;
+          }
+        }
+
+        &[aria-label="arrow forward"] {
+          &:before {
+            background-image: url('../../../../assets/images/begin/arrow.svg');
+          }
+        }
+      }
+    }
+  }

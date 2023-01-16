@@ -15,6 +15,10 @@ const routes: Routes = [
     path: 'begin',
     loadChildren: () => import('./ui/pages/begin/begin.module').then( m => m.BeginPageModule)
   },
+  {
+    path: 'workspace',
+    loadChildren: () => import('./ui/pages/workspace/workspace.module').then( m => m.WorkspacePageModule)
+  },
 ];
 
 @NgModule({
