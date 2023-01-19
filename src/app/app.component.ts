@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { SQLiteConnection } from '@capacitor-community/sqlite';
 import "reflect-metadata";
 import { OrmProvider } from './core/db/sqlite/typeorm/orm/orm';
 
@@ -9,16 +10,21 @@ import { OrmProvider } from './core/db/sqlite/typeorm/orm/orm';
 })
 
 export class AppComponent implements OnInit {
+  private sqliteConnection: SQLiteConnection;
+
   constructor(
     private orm: OrmProvider
   ) {
   }
 
   async ngOnInit(): Promise<void> {
-    const sqliteConnection = await this.orm.initialize();
+    this.orm.initialize().then((connection) => {
+      this.sqliteConnection = connection;
+    });
+  }
 
-    window.onbeforeunload = () => {
-      sqliteConnection.closeAllConnections();
-    };
+  @HostListener('window:beforeunload')
+  private onBeforeUnload() {
+    this.sqliteConnection.closeAllConnections();
   }
 }

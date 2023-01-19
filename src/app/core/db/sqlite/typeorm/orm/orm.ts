@@ -1,5 +1,5 @@
 import { CapacitorSQLite, SQLiteConnection } from '@capacitor-community/sqlite';
-import { Workspace1673800646806 } from '@migrations/1673800646806-Workspace';
+import { User } from '@dbentities/User';
 import "reflect-metadata";
 import { Workspace } from 'src/app/core/db/sqlite/typeorm/entity/Workspace';
 import { environment } from 'src/environments/environment';
@@ -19,10 +19,7 @@ export class OrmProvider {
       driver: sqliteConnection,
       database: databaseName,
       entities: [
-        Workspace
-      ],
-      migrations: [
-        Workspace1673800646806
+        User, Workspace
       ],
       migrationsRun: false,
       synchronize: true,
