@@ -18,9 +18,7 @@ export class AppComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    this.orm.initialize().then((connection) => {
-      this.sqliteConnection = connection;
-    });
+    this.orm.initialize().then((connection) => (this.sqliteConnection = connection));
   }
 
   @HostListener('window:beforeunload')

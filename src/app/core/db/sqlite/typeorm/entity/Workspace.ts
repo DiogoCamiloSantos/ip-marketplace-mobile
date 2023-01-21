@@ -4,9 +4,15 @@ import {
   JoinColumn,
   OneToMany,
   OneToOne,
-  PrimaryGeneratedColumn
+  PrimaryGeneratedColumn,
+  Relation
 } from "typeorm";
+import { IUser } from "../interfaces/User";
 import { EntityEnum } from "./EntityEnum";
+import { Store } from "./Store";
+import { StoreRoute } from "./StoreRoute";
+import { Theme } from "./Theme";
+import { User } from "./User";
 
 @Entity(EntityEnum.WORKSPACE)
 export class Workspace {
@@ -44,4 +50,22 @@ export class Workspace {
     name: "deleted"
   })
   deleted: boolean;
+
+  @OneToMany(type => Store, store => store.workspace)
+  stores: Store[];
+
+  @OneToOne(() => User, user => user.id, {
+    nullable: true,
+    persistence: false,
+    onDelete: "NO ACTION"
+  })
+  @JoinColumn({ name: "userIdFK" })
+  user: Relation<User>;
+
+  @OneToMany(type => StoreRoute, storeRoute => storeRoute.workspace)
+  storeRoutes: StoreRoute[];
+
+  @OneToOne(type => Theme, theme => theme.workspace)
+  @JoinColumn()
+  theme: Relation<Theme>;
 }

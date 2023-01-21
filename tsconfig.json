@@ -29,7 +29,7 @@
         "src/app/core/db/sqlite/typeorm/entity/*"
       ],
       "@models/*": [
-        "./src/types/*"
+        "src/app/core/types/*"
       ],
       "@migrations/*": [
         "src/app/core/db/sqlite/typeorm/migration/*"
