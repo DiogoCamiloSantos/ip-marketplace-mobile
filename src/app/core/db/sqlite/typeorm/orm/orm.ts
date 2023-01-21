@@ -9,6 +9,11 @@ import { ResearchWithStepField } from '@dbentities/ResearchWithStepField';
 import { StoreRoute } from '@dbentities/StoreRoute';
 import { BaseBusinessCondition } from '@dbentities/BaseBusinessCondition';
 import { Theme } from '@dbentities/Theme';
+import { Contents as Content } from '@dbentities/Content';
+import { ComboDealsProducts } from '@dbentities/ComboDealsProducts';
+import { Filters } from '@dbentities/Filters';
+import { MetricasMdtr } from '@dbentities/MetricasMdtr';
+import { DeadlinePayment } from '@dbentities/DeadlinePayment';
 
 export class OrmProvider {
   private dataSource: DataSource;
@@ -24,7 +29,8 @@ export class OrmProvider {
       driver: this.sqliteConnection,
       database: databaseName,
       entities: [
-        Store, User, Workspace, ResearchWithStepField, StoreRoute, BaseBusinessCondition, Theme
+        Store, User, Workspace, ResearchWithStepField, StoreRoute, BaseBusinessCondition, Theme,
+        Content, ComboDealsProducts, Filters, MetricasMdtr, DeadlinePayment
       ],
       migrationsRun: false,
       synchronize: true,
