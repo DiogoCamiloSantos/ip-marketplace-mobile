@@ -14,14 +14,14 @@ export class AppComponent implements OnInit {
 
   constructor(
     private orm: OrmProvider
-  ) {
-  }
+  ) {}
 
   async ngOnInit(): Promise<void> {
     this.orm.initialize().then((connection) => (this.sqliteConnection = connection));
   }
 
   @HostListener('window:beforeunload')
+  @HostListener('window:pagehide')
   private onBeforeUnload() {
     this.sqliteConnection.closeAllConnections();
   }
