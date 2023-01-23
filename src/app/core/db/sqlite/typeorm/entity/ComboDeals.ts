@@ -10,8 +10,6 @@ import {
   Relation
 } from "typeorm";
 import { EntityEnum } from "./EntityEnum";
-import { Product } from "./Products";
-// import { Products } from "./Products";
 import { User } from "./User";
 import { Workspace } from "./Workspace";
 
@@ -37,59 +35,60 @@ export class ComboDeals {
   idComboOferta: number;
 
   @Column({
-    name: "descricao"
+    name: "descricao",
+    nullable: true
   })
   descricao: string;
 
   @Column({
-    name: "status"
+    name: "status",
+    nullable: true
   })
   status: string;
 
   @Column({
-    name: "menorDataVigencia"
+    name: "menorDataVigencia",
+    nullable: true
   })
   menorDataVigencia: string;
 
   @Column({
-    name: "precoCombo"
+    name: "precoCombo",
+    type: 'real',
+    nullable: true
   })
   precoCombo: number;
 
   @Column({
-    name: "precoComboLiquido"
+    name: "precoComboLiquido",
+    type: 'real',
+    nullable: true
   })
   precoComboLiquido: number;
 
   @Column({
-    name: "caminhoFoto"
+    name: "caminhoFoto",
+    nullable: true
   })
   caminhoFoto: string;
 
   @Column({
-    name: "tipoAgrupamentoLojas"
+    name: "tipoAgrupamentoLojas",
+    nullable: true
   })
   tipoAgrupamentoLojas: number;
 
   @Column({
-    name: "locked"
+    name: "locked",
+    nullable: true
   })
   locked: boolean;
 
   @Column({
-    name: "tipoPedido"
+    name: "tipoPedido",
+    nullable: true
   })
   tipoPedido: TipoPedidoEnum;
-
-  @Column({
-    name: "workspaceId"
-  })
-  workspaceId: number;
-
-  @Column({
-    name: "userId"
-  })
-  userId: number;
 
   @ManyToOne(() => Workspace, workspace => workspace.combos)
   @JoinColumn({ name: "workspaceId" })

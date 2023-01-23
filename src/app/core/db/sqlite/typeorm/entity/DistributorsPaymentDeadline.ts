@@ -2,8 +2,6 @@ import { TipoPedidoEnum } from '@models/pedido';
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, Relation } from 'typeorm';
 import { EntityEnum } from './EntityEnum';
 import { MixDistributors } from './MixDistributors';
-// import { ProductsBaseDiscount } from './ProductsBaseDiscount';
-// import { MixDistributors } from './MixDistributors';
 import { ProductsBaseDiscount } from './ProductsBaseDiscount';
 import { User } from './User';
 import { Workspace } from './Workspace';

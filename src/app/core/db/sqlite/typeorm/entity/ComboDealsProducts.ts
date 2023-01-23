@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { EntityEnum } from './EntityEnum';
 
 @Entity(EntityEnum.COMBO_DEALS_PRODUCTS)
@@ -19,12 +19,15 @@ export class ComboDealsProducts {
     productId: number;
 
     @Column({
-        name: 'productDunId'
+        name: 'productDunId',
+        nullable: true
     })
     productDunId: number;
     
     @Column({
-        name: 'preco'
+        name: 'preco',
+        type: 'real',
+        nullable: true
     })
     preco: number;
 
@@ -44,7 +47,8 @@ export class ComboDealsProducts {
     desconto: number;
 
     @Column({
-        name: 'precoLiquido'
+        name: 'precoLiquido',
+        type: 'real',
     })
     precoLiquido: number;
 }

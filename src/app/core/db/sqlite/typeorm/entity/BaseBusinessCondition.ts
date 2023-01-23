@@ -12,44 +12,53 @@ export class BaseBusinessCondition {
     id?: number;
 
     @Column({
-        name: 'idCondicaoComercialBase'
+        name: 'idCondicaoComercialBase', 
+        nullable: true,
     })
     idCondicaoComercialBase: number;
 
     @Column({
-        name: 'valorMinimoDePedido'
+        name: 'valorMinimoDePedido', 
+        type: 'real', 
+        nullable: true,
     })
     valorMinimoDePedido: number;
 
     @Column({
-        name: 'usarLooping'
+        name: 'usarLooping', 
+        nullable: true,
+        default: false
     })
     usarLooping: boolean;
 
     @Column({
-        name: 'tipoPedido'
+        name: 'tipoPedido', 
+        nullable: true,
     })
     tipoPedido: TipoPedidoEnum;
 
     @Column({
-        name: 'workspaceId'
+        name: 'workspaceId', 
+        nullable: true,
     })
     workspaceId?: number;
 
     @Column({
-        name: 'userId'
+        name: 'userId',
+        nullable: true
     })
     userId?: number;
 
     @Column({
-        name: 'storeId'
+        name: 'storeId',
+        nullable: true
     })
     storeId?: number;
 
     @ManyToOne(type => Workspace, workspace => workspace.storeRoutes)
     @JoinColumn({ name: 'workspaceId' })
     workspace: Workspace;
-    
+
     @ManyToOne(type => User, user => user.storeRoutes)
     @JoinColumn({ name: 'userId' })
     user: User;
