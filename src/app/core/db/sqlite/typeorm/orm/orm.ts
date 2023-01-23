@@ -19,6 +19,9 @@ import { DistributorsPaymentDeadline } from "@dbentities/DistributorsPaymentDead
 import { MixDistributors } from "@dbentities/MixDistributors";
 import { Product } from "@dbentities/Products";
 import { ProductsBaseDiscount } from "@dbentities/ProductsBaseDiscount";
+import { MixDUNDistributors } from "@dbentities/MixDUNDistributors";
+import { Research } from "@dbentities/Research";
+import { ResearchResponse } from "@dbentities/ResearchResponse";
 
 export class OrmProvider {
   private dataSource: DataSource;
@@ -36,7 +39,8 @@ export class OrmProvider {
       entities: [
         Store, User, Workspace, ResearchWithStepField, StoreRoute, BaseBusinessCondition, Theme,
         Content, ComboDealsProducts, Filters, MetricasMdtr, DeadlinePayment,
-        ComboDeals, DistributorsPaymentDeadline, MixDistributors, Product, ProductsBaseDiscount
+        ComboDeals, DistributorsPaymentDeadline, MixDistributors, Product, ProductsBaseDiscount,
+        MixDUNDistributors, Research, ResearchResponse
       ],
       migrationsRun: false,
       synchronize: true,

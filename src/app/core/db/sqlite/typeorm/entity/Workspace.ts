@@ -12,6 +12,7 @@ import { ComboDeals } from "./ComboDeals";
 import { EntityEnum } from "./EntityEnum";
 import { MixDistributors } from "./MixDistributors";
 import { ProductsBaseDiscount } from "./ProductsBaseDiscount";
+import { Research } from "./Research";
 import { Store } from "./Store";
 import { StoreRoute } from "./StoreRoute";
 import { Theme } from "./Theme";
@@ -34,6 +35,9 @@ export class Workspace {
     mixDistributor => mixDistributor.workspace
   )
   mixDistributors: MixDistributors[];
+
+  @OneToMany(type => Research, research => research.workspace)
+  researchs: Research[];
 
   @PrimaryGeneratedColumn({
     name: "id"

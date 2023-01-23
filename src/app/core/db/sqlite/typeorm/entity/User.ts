@@ -1,6 +1,7 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { ComboDeals } from "./ComboDeals";
 import { EntityEnum } from "./EntityEnum";
+import { Research } from "./Research";
 import { Store } from "./Store";
 import { StoreRoute } from "./StoreRoute";
 
@@ -10,6 +11,9 @@ export class User {
 
   @OneToMany(() => ComboDeals, combo => combo.user)
   combos: ComboDeals[];
+
+  @OneToMany(() => Research, research => research.user)
+  researchs: Research[];
 
     @PrimaryGeneratedColumn({
         name: "id"
