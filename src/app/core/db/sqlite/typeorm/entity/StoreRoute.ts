@@ -6,6 +6,28 @@ import { Workspace } from './Workspace';
 
 @Entity(EntityEnum.STORE_ROUTE)
 export class StoreRoute {
+
+    @ManyToOne(type => Workspace, workspace => workspace.storeRoutes)
+    @JoinColumn({ name: 'workspaceId' })
+    workspace: Relation<Workspace>;
+
+    @ManyToOne(type => User, user => user.storeRoutes)
+    @JoinColumn({ name: 'userId' })
+    user: Relation<User>;
+
+    @ManyToOne(type => Store, store => store.storeRoutes)
+    @JoinColumn()
+    store: Relation<Store>;
+
+    // @OneToOne(type => ResearchWithStep, researchWithStep => researchWithStep.storeRoute)
+    // researchWithStep: ResearchWithStep;
+
+    // @OneToOne(type => Research, research => research.storeRoute)
+    // research: Research;
+
+    // @OneToOne(() => ResearchComplementaryResponse, researchComplementaryResponse => researchComplementaryResponse.storeRoute)
+    // researchComplementaryResponse: ResearchComplementaryResponse;
+
     @PrimaryGeneratedColumn({
         name: 'id'
     })
@@ -67,11 +89,6 @@ export class StoreRoute {
     userId: number;
 
     @Column({
-        name: 'storeId'
-    })
-    storeId: number;
-
-    @Column({
         name: 'visit'
     })
     visit: boolean;
@@ -80,25 +97,4 @@ export class StoreRoute {
         name: 'portalPlannig'
     })
     portalPlannig: boolean;
-
-    @ManyToOne(type => Workspace, workspace => workspace.storeRoutes)
-    @JoinColumn({ name: 'workspaceId' })
-    workspace: Relation<Workspace>;
-
-    @ManyToOne(type => User, user => user.storeRoutes)
-    @JoinColumn({ name: 'userId' })
-    user: Relation<User>;
-
-    // @ManyToOne(type => Store, store => store.storeRoutes)
-    // @JoinColumn({ name: 'storeId' })
-    // store: Store;
-
-    // @OneToOne(type => ResearchWithStep, researchWithStep => researchWithStep.storeRoute)
-    // researchWithStep: ResearchWithStep;
-
-    // @OneToOne(type => Research, research => research.storeRoute)
-    // research: Research;
-
-    // @OneToOne(() => ResearchComplementaryResponse, researchComplementaryResponse => researchComplementaryResponse.storeRoute)
-    // researchComplementaryResponse: ResearchComplementaryResponse;
 }

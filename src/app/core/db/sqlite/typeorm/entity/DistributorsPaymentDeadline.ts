@@ -1,13 +1,30 @@
 import { TipoPedidoEnum } from '@models/pedido';
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, Relation } from 'typeorm';
 import { EntityEnum } from './EntityEnum';
-// import { MixDistributors } from './MixDistributors';
+import { MixDistributors } from './MixDistributors';
 // import { ProductsBaseDiscount } from './ProductsBaseDiscount';
+// import { MixDistributors } from './MixDistributors';
+import { ProductsBaseDiscount } from './ProductsBaseDiscount';
 import { User } from './User';
 import { Workspace } from './Workspace';
 
 @Entity(EntityEnum.DISTRIBUTORS_PAYMENT_DEADLINE)
-export class DistributorsPaymentDeadline {
+export class DistributorsPaymentDeadline { 
+
+    @ManyToOne(type => Workspace, workspace => workspace.storeRoutes)
+    @JoinColumn({ name: 'workspaceId' })
+    workspace?: Relation<Workspace>;
+
+    @ManyToOne(type => User, user => user.storeRoutes)
+    @JoinColumn({ name: 'userId' })
+    user?: Relation<User>;
+
+    @OneToMany(type => MixDistributors, mixDistributor => mixDistributor.distributor)
+    mixDistributors: MixDistributors[];
+
+    @OneToMany(type => ProductsBaseDiscount, productsBaseDiscount => productsBaseDiscount.distributor)
+    productsBaseDiscounts: Relation<ProductsBaseDiscount[]>;
+
     @PrimaryGeneratedColumn({
         name: 'id'
     })
@@ -52,18 +69,4 @@ export class DistributorsPaymentDeadline {
         name: 'storeId'
     })
     storeId: number;
-
-    @ManyToOne(type => Workspace, workspace => workspace.storeRoutes)
-    @JoinColumn({ name: 'workspaceId' })
-    workspace?: Relation<Workspace>;
-
-    @ManyToOne(type => User, user => user.storeRoutes)
-    @JoinColumn({ name: 'userId' })
-    user?: Relation<User>;
-
-    // @OneToMany(type => MixDistributors, mixDistributor => mixDistributor.distributor)
-    // mixDistributors: MixDistributors[];
-
-    // @OneToMany(type => ProductsBaseDiscount, productsBaseDiscount => productsBaseDiscount.distributor)
-    // productsBaseDiscounts: ProductsBaseDiscount[];
 }

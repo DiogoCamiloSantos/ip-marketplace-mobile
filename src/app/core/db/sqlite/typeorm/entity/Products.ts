@@ -1,150 +1,152 @@
-// import { EntityEnum } from "@dbentities/EntityEnum";
-// import { User } from "@dbentities/User";
-// import { Workspace } from "@dbentities/Workspace";
-// import {
-//   Column,
-//   Entity,
-//   JoinColumn,
-//   ManyToMany,
-//   ManyToOne,
-//   OneToMany,
-//   PrimaryGeneratedColumn,
-//   Relation
-// } from "typeorm";
-// import { ComboDeals } from "./ComboDeals";
-// import { MixDistributors } from "./MixDistributors";
+import { EntityEnum } from "@dbentities/EntityEnum";
+import { User } from "@dbentities/User";
+import { Workspace } from "@dbentities/Workspace";
+import {
+    Column,
+    Entity,
+    JoinColumn,
+    ManyToMany,
+    ManyToOne,
+    OneToMany,
+    PrimaryGeneratedColumn,
+    Relation
+} from "typeorm";
+import { ComboDeals } from "./ComboDeals";
+import { MixDistributors } from "./MixDistributors";
+import { ProductsBaseDiscount } from "./ProductsBaseDiscount";
 
-// @Entity(EntityEnum.SKU)
-// export class Products {
-//   @PrimaryGeneratedColumn({
-//     name: "id"
-//   })
-//   id: number;
+@Entity(EntityEnum.SKU)
+export class Product {
 
-//   @Column({
-//     name: "idProduto"
-//   })
-//   idProduto: number;
+    @OneToMany(
+      type => ProductsBaseDiscount,
+      productsBaseDiscount => productsBaseDiscount.product,
+      {
+        nullable: true,
+        persistence: false,
+        onDelete: "NO ACTION"
+      }
+    )
+    productsBaseDiscounts: ProductsBaseDiscount[];
 
-//   @Column({
-//     name: "ean"
-//   })
-//   ean: string;
+    //   @ManyToMany(() => ComboDeals, comboDeals => comboDeals.products)
+    //   combos: Relation<ComboDeals[]>;
 
-//   @Column({
-//     name: "descricao"
-//   })
-//   descricao: string;
+    @PrimaryGeneratedColumn({
+        name: "id"
+    })
+    id: number;
 
-//   @Column({
-//     name: "laboratorio"
-//   })
-//   laboratorio: string;
+    @Column({
+        name: "idProduto"
+    })
+    idProduto: number;
 
-//   @Column({
-//     name: "idFamilia"
-//   })
-//   idFamilia: number;
+    @Column({
+        name: "ean"
+    })
+    ean: string;
 
-//   @Column({
-//     name: "familia"
-//   })
-//   familia: string;
+    @Column({
+        name: "descricao"
+    })
+    descricao: string;
 
-//   @Column({
-//     name: "quantidadeMinima"
-//   })
-//   quantidadeMinima: number;
+    @Column({
+        name: "laboratorio"
+    })
+    laboratorio: string;
 
-//   @Column({
-//     name: "destaque"
-//   })
-//   destaque: boolean;
+    @Column({
+        name: "idFamilia"
+    })
+    idFamilia: number;
 
-//   @Column({
-//     name: "status"
-//   })
-//   status: string;
+    @Column({
+        name: "familia"
+    })
+    familia: string;
 
-//   @Column({
-//     name: "menorDataVigencia"
-//   })
-//   menorDataVigencia: string;
+    @Column({
+        name: "quantidadeMinima"
+    })
+    quantidadeMinima: number;
 
-//   @Column({
-//     name: "quantidade"
-//   })
-//   quantidade: number;
+    @Column({
+        name: "destaque"
+    })
+    destaque: boolean;
 
-//   @Column({
-//     name: "caminhoFoto"
-//   })
-//   caminhoFoto?: string;
+    @Column({
+        name: "status"
+    })
+    status: string;
 
-//   @Column({
-//     name: "idTipoProduto"
-//   })
-//   idTipoProduto: number;
+    @Column({
+        name: "menorDataVigencia"
+    })
+    menorDataVigencia: string;
 
-//   @Column({
-//     name: "isDemonstraGridPedido"
-//   })
-//   isDemonstraGridPedido: boolean;
+    @Column({
+        name: "quantidade"
+    })
+    quantidade: number;
 
-//   @Column({
-//     name: "workspaceId"
-//   })
-//   workspaceId?: number;
+    @Column({
+        name: "caminhoFoto"
+    })
+    caminhoFoto?: string;
 
-//   @Column({
-//     name: "userId"
-//   })
-//   userId?: number;
+    @Column({
+        name: "idTipoProduto"
+    })
+    idTipoProduto: number;
 
-//   idProdutoDun: number;
-//   dun: string;
-//   quantidadeDun: number;
-//   Apresentacao: string;
-//   distributorId: number;
+    @Column({
+        name: "isDemonstraGridPedido"
+    })
+    isDemonstraGridPedido: boolean;
 
-//   @ManyToOne(type => Workspace, workspace => workspace.storeRoutes, {
-//     nullable: true,
-//     persistence: false,
-//     onDelete: "NO ACTION"
-//   })
-//   @JoinColumn({ name: "workspaceId" })
-//   workspace: Workspace;
+    @Column({
+        name: "workspaceId"
+    })
+    workspaceId?: number;
 
-//   @ManyToOne(type => User, user => user.storeRoutes, {
-//     nullable: true,
-//     persistence: false,
-//     onDelete: "NO ACTION"
-//   })
-//   @JoinColumn({ name: "userId" })
-//   user: Relation<User>;
+    @Column({
+        name: "userId"
+    })
+    userId?: number;
 
-//   // @OneToMany(
-//   //   type => MixDistributors,
-//   //   mixDistributor => mixDistributor.product,
-//   //   {
-//   //     nullable: true,
-//   //     persistence: false,
-//   //     onDelete: "NO ACTION"
-//   //   }
-//   // )
-//   // mixDistributors: MixDistributors[];
+    idProdutoDun: number;
+    dun: string;
+    quantidadeDun: number;
+    Apresentacao: string;
+    distributorId: number;
 
-//   // @OneToMany(
-//   //   type => ProductsBaseDiscount,
-//   //   productsBaseDiscount => productsBaseDiscount.product,
-//   //   {
-//   //     nullable: true,
-//   //     persistence: false,
-//   //     onDelete: "NO ACTION"
-//   //   }
-//   // )
-//   // productsBaseDiscounts: ProductsBaseDiscount;
+    @ManyToOne(type => Workspace, workspace => workspace.storeRoutes, {
+        nullable: true,
+        persistence: false,
+        onDelete: "NO ACTION"
+    })
+    @JoinColumn({ name: "workspaceId" })
+    workspace: Relation<Workspace>;
 
-//   @ManyToMany(() => ComboDeals, comboDeals => comboDeals.products)
-//   combos: ComboDeals[];
-// }
+    @ManyToOne(type => User, user => user.storeRoutes, {
+        nullable: true,
+        persistence: false,
+        onDelete: "NO ACTION"
+    })
+    @JoinColumn({ name: "userId" })
+    user: Relation<User>;
+
+    @OneToMany(
+        type => MixDistributors,
+        mixDistributor => mixDistributor.product,
+        {
+            nullable: true,
+            persistence: false,
+            onDelete: "NO ACTION"
+        }
+    )
+    mixDistributors: MixDistributors[];
+}

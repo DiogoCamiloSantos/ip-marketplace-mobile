@@ -10,6 +10,7 @@ import {
   Relation
 } from "typeorm";
 import { EntityEnum } from "./EntityEnum";
+import { Product } from "./Products";
 // import { Products } from "./Products";
 import { User } from "./User";
 import { Workspace } from "./Workspace";
@@ -17,13 +18,13 @@ import { Workspace } from "./Workspace";
 @Entity(EntityEnum.COMBO_DEALS)
 export class ComboDeals {
 
-  // @ManyToMany(() => Products, products => products.combos)
+  // @ManyToMany(() => Product, products => products.combos)
   // @JoinTable({
   //   name: EntityEnum.COMBO_DEALS_PRODUCTS,
   //   joinColumns: [{ name: "comboDealsId" }],
   //   inverseJoinColumns: [{ name: "productId" }]
   // })
-  // products: Products[];
+  // products: Relation<Product[]>;
 
   @PrimaryGeneratedColumn({
     name: "id"
@@ -97,12 +98,4 @@ export class ComboDeals {
   @ManyToOne(() => User, user => user.combos)
   @JoinColumn({ name: "userId" })
   user: Relation<User>;
-
-  // @ManyToMany(() => Products, products => products.combos)
-  // @JoinTable({
-  //   name: EntityEnum.COMBO_DEALS_PRODUCTS,
-  //   joinColumns: [{ name: "comboDealsId" }],
-  //   inverseJoinColumns: [{ name: "productId" }]
-  // })
-  // products: Products[];
 }

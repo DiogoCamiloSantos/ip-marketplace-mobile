@@ -1,11 +1,16 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, Relation } from 'typeorm';
 import { IUser } from '../interfaces/User';
 import { EntityEnum } from './EntityEnum';
+import { StoreRoute } from './StoreRoute';
 import { User } from './User';
 import { Workspace } from './Workspace';
 
 @Entity(EntityEnum.STORES)
 export class Store {
+
+    @OneToMany(type => StoreRoute, storeRoute => storeRoute.store, { onDelete: 'NO ACTION' })
+    storeRoutes: StoreRoute[];
+
     @PrimaryGeneratedColumn({
         name: 'id'
     })
