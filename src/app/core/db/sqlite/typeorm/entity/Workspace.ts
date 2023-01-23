@@ -12,6 +12,7 @@ import { ComboDeals } from "./ComboDeals";
 import { EntityEnum } from "./EntityEnum";
 import { MixDistributors } from "./MixDistributors";
 import { PdvRelatedToShareOfShelfResearch } from "./PdvRelatedToShareOfShelfResearch";
+import { Permission } from "./Permission";
 import { ProductsBaseDiscount } from "./ProductsBaseDiscount";
 import { Research } from "./Research";
 import { ResearchShareOfShelf } from "./ResearchShareOfShelf";
@@ -23,6 +24,10 @@ import { User } from "./User";
 
 @Entity(EntityEnum.WORKSPACE)
 export class Workspace {
+
+  @OneToMany(() => Permission, permission => permission.workspace)
+  permissions: Permission[];
+
   @OneToMany(
     type => ProductsBaseDiscount,
     productsBaseDiscount => productsBaseDiscount.workspace
