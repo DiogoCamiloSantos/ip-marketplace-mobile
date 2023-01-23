@@ -1,4 +1,4 @@
-import { Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { ComboDeals } from "./ComboDeals";
 import { EntityEnum } from "./EntityEnum";
 import { PdvRelatedToShareOfShelfResearch } from "./PdvRelatedToShareOfShelfResearch";
@@ -7,7 +7,10 @@ import { Preference } from "./Preference";
 import { Research } from "./Research";
 import { ResearchComplementary } from "./ResearchComplementary";
 import { ResearchComplementaryResponse } from "./ResearchComplementaryResponse";
+import { ResearchField } from "./ResearchField";
 import { ResearchShareOfShelf } from "./ResearchShareOfShelf";
+import { ResearchTradeMarketing } from "./ResearchTradeMarketing";
+import { ResearchWithStep } from "./ResearchWithStep";
 import { ShareOfShelf } from "./ShareOfShelf";
 import { Store } from "./Store";
 import { StoreRoute } from "./StoreRoute";
@@ -15,6 +18,22 @@ import { Syncronization } from "./Syncronization";
 
 @Entity(EntityEnum.USERS)
 export class User {
+
+    @OneToMany(() => ResearchWithStep, researchWithStep => researchWithStep.user)
+    researchsWithStep: ResearchWithStep[];
+  
+
+    @OneToOne(
+      () => ResearchTradeMarketing,
+      researchTradeMarketing => researchTradeMarketing.user
+    )
+    researchTradeMarketing: ResearchTradeMarketing;
+
+    @OneToMany(
+      type => ResearchField,
+      researchComplementaryResponse => researchComplementaryResponse.user
+    )
+    researchFields: ResearchField[];
 
     @OneToMany(
       () => ResearchComplementaryResponse,

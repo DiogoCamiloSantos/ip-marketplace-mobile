@@ -1,5 +1,6 @@
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, Relation } from 'typeorm';
 import { EntityEnum } from './EntityEnum';
+import { ResearchWithStep } from './ResearchWithStep';
 
 @Entity(EntityEnum.RESEARCH_WITH_STEP_FIELD)
 export class ResearchWithStepField {
@@ -53,7 +54,7 @@ export class ResearchWithStepField {
   })
   researchWithStepId: number;
 
-	// @ManyToOne(() => ResearchWithStep, researchWithStep => researchWithStep.researchWithStepFields)
-  // @JoinColumn({ name: 'researchWithStepId' })
-  // researchWithStep: ResearchWithStep;
+	@ManyToOne(() => ResearchWithStep, researchWithStep => researchWithStep.researchWithStepFields)
+  @JoinColumn({ name: 'researchWithStepId' })
+  researchWithStep: Relation<ResearchWithStep>;
 }

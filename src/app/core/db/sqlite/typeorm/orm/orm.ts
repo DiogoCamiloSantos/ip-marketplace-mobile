@@ -32,6 +32,10 @@ import { ProductsDUN as ProductDUN } from "@dbentities/ProductsDUN";
 import { OrderTable } from "@dbentities/OrderTable";
 import { ResearchComplementary } from "@dbentities/ResearchComplementary";
 import { ResearchComplementaryResponse } from "@dbentities/ResearchComplementaryResponse";
+import { ResearchField } from "@dbentities/ResearchField";
+import { ResearchTradeMarketing } from "@dbentities/ResearchTradeMarketing";
+import { ResearchWithStep } from "@dbentities/ResearchWithStep";
+import { ResearchWithStepResponse } from "@dbentities/ResearchWithStepResponse";
 
 export class OrmProvider {
   private dataSource: DataSource;
@@ -51,7 +55,8 @@ export class OrmProvider {
         Content, ComboDealsProducts, Filters, MetricasMdtr, DeadlinePayment,
         ComboDeals, DistributorsPaymentDeadline, MixDistributors, Product, ProductsBaseDiscount,
         MixDUNDistributors, Research, ResearchResponse, ShareOfShelf, ResearchShareOfShelf, PdvRelatedToShareOfShelfResearch,
-        Permission, Preference, Syncronization, ProductDUN, OrderTable, ResearchComplementary, ResearchComplementaryResponse
+        Permission, Preference, Syncronization, ProductDUN, OrderTable, ResearchComplementary, ResearchComplementaryResponse,
+        ResearchField, ResearchTradeMarketing, ResearchWithStep, ResearchWithStepResponse,
 
       ],
       migrationsRun: false,

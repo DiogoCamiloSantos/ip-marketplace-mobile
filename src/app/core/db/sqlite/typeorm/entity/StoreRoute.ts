@@ -2,12 +2,16 @@ import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn
 import { EntityEnum } from './EntityEnum';
 import { Research } from './Research';
 import { ResearchComplementaryResponse } from './ResearchComplementaryResponse';
+import { ResearchWithStep } from './ResearchWithStep';
 import { Store } from './Store';
 import { User } from './User';
 import { Workspace } from './Workspace';
 
 @Entity(EntityEnum.STORE_ROUTE)
 export class StoreRoute {
+
+    @OneToOne(type => ResearchWithStep, researchWithStep => researchWithStep.storeRoute)
+    researchWithStep: ResearchWithStep;
 
     @ManyToOne(type => Workspace, workspace => workspace.storeRoutes)
     @JoinColumn({ name: 'workspaceId' })
@@ -23,11 +27,6 @@ export class StoreRoute {
 
     @OneToOne(type => Research, research => research.storeRoute)
     research: Relation<Research>;
-
-
-    // @OneToOne(type => ResearchWithStep, researchWithStep => researchWithStep.storeRoute)
-    // researchWithStep: ResearchWithStep;
-
 
     @OneToOne(() => ResearchComplementaryResponse, researchComplementaryResponse => researchComplementaryResponse.storeRoute)
     researchComplementaryResponse: ResearchComplementaryResponse;

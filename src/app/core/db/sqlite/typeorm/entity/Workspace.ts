@@ -2,6 +2,7 @@ import {
   Column,
   Entity,
   JoinColumn,
+  ManyToOne,
   OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
@@ -17,7 +18,10 @@ import { ProductsBaseDiscount } from "./ProductsBaseDiscount";
 import { Research } from "./Research";
 import { ResearchComplementary } from "./ResearchComplementary";
 import { ResearchComplementaryResponse } from "./ResearchComplementaryResponse";
+import { ResearchField } from "./ResearchField";
 import { ResearchShareOfShelf } from "./ResearchShareOfShelf";
+import { ResearchTradeMarketing } from "./ResearchTradeMarketing";
+import { ResearchWithStep } from "./ResearchWithStep";
 import { ShareOfShelf } from "./ShareOfShelf";
 import { Store } from "./Store";
 import { StoreRoute } from "./StoreRoute";
@@ -26,6 +30,18 @@ import { User } from "./User";
 
 @Entity(EntityEnum.WORKSPACE)
 export class Workspace {
+  
+  @OneToMany(
+    type => ResearchWithStep,
+    researchWithStep => researchWithStep.workspace
+  )
+  researchsWithStep: ResearchWithStep[];
+
+  @OneToOne(
+    () => ResearchTradeMarketing,
+    researchTradeMarketing => researchTradeMarketing.workspace
+  )
+  researchTradeMarketing: ResearchTradeMarketing;
 
   @OneToMany(
     type => ResearchComplementaryResponse,
@@ -33,6 +49,11 @@ export class Workspace {
   )
   researchesComplementariesResponses: ResearchComplementaryResponse[];
 
+  @OneToMany(
+    type => ResearchField,
+    researchComplementaryResponse => researchComplementaryResponse.workspace
+  )
+  researchFields: ResearchField[];
 
   @OneToOne(
     () => ResearchComplementary,
