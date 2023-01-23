@@ -3,6 +3,7 @@ import { IUser } from '../interfaces/User';
 import { EntityEnum } from './EntityEnum';
 import { StoreRoute } from './StoreRoute';
 import { User } from './User';
+import { Visit } from './Visit';
 import { Workspace } from './Workspace';
 
 @Entity(EntityEnum.STORES)
@@ -10,6 +11,9 @@ export class Store {
 
     @OneToMany(type => StoreRoute, storeRoute => storeRoute.store, { onDelete: 'NO ACTION' })
     storeRoutes: StoreRoute[];
+
+    @OneToMany(type => Visit, visit => visit.store, { onDelete: 'NO ACTION' })
+    visits: Visit[];
 
     @PrimaryGeneratedColumn({
         name: 'id'

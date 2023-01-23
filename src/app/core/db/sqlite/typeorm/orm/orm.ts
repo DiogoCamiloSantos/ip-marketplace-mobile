@@ -36,6 +36,13 @@ import { ResearchField } from "@dbentities/ResearchField";
 import { ResearchTradeMarketing } from "@dbentities/ResearchTradeMarketing";
 import { ResearchWithStep } from "@dbentities/ResearchWithStep";
 import { ResearchWithStepResponse } from "@dbentities/ResearchWithStepResponse";
+import { SystemParametrizations } from "@dbentities/SystemParametrizations";
+import { Tabloid } from "@dbentities/Tabloid";
+import { TabloidCombo } from "@dbentities/TabloidCombo";
+import { TabloidDeadlinePayment } from "@dbentities/TabloidDeadlinePayment";
+import { TabloidDistributor } from "@dbentities/TabloidDistributor";
+import { TabloidSku } from "@dbentities/TabloidSku";
+import { Visit } from "@dbentities/Visit";
 
 export class OrmProvider {
   private dataSource: DataSource;
@@ -57,6 +64,7 @@ export class OrmProvider {
         MixDUNDistributors, Research, ResearchResponse, ShareOfShelf, ResearchShareOfShelf, PdvRelatedToShareOfShelfResearch,
         Permission, Preference, Syncronization, ProductDUN, OrderTable, ResearchComplementary, ResearchComplementaryResponse,
         ResearchField, ResearchTradeMarketing, ResearchWithStep, ResearchWithStepResponse,
+        SystemParametrizations, Tabloid, TabloidCombo, TabloidDeadlinePayment, TabloidDistributor, TabloidSku, Visit
 
       ],
       migrationsRun: false,

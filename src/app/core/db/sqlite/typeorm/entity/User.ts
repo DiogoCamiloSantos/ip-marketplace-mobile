@@ -15,9 +15,23 @@ import { ShareOfShelf } from "./ShareOfShelf";
 import { Store } from "./Store";
 import { StoreRoute } from "./StoreRoute";
 import { Syncronization } from "./Syncronization";
+import { SystemParametrizations } from "./SystemParametrizations";
+import { Tabloid } from "./Tabloid";
+import { Visit } from "./Visit";
 
 @Entity(EntityEnum.USERS)
 export class User {
+    @OneToMany(type => Tabloid, tabloid => tabloid.user)
+    tabloids: Tabloid[];
+
+    @OneToMany(type => Visit, visit => visit.user, { onDelete: 'NO ACTION' })
+    visits: Visit[];
+
+    @OneToOne(
+      () => SystemParametrizations,
+      systemParametrizations => systemParametrizations.user
+    )
+    systemParametrizations: SystemParametrizations;
 
     @OneToMany(() => ResearchWithStep, researchWithStep => researchWithStep.user)
     researchsWithStep: ResearchWithStep[];

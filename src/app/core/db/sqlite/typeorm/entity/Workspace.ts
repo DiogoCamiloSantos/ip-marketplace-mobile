@@ -25,12 +25,27 @@ import { ResearchWithStep } from "./ResearchWithStep";
 import { ShareOfShelf } from "./ShareOfShelf";
 import { Store } from "./Store";
 import { StoreRoute } from "./StoreRoute";
+import { SystemParametrizations } from "./SystemParametrizations";
+import { Tabloid } from "./Tabloid";
 import { Theme } from "./Theme";
 import { User } from "./User";
+import { Visit } from "./Visit";
 
 @Entity(EntityEnum.WORKSPACE)
 export class Workspace {
-  
+
+  @OneToMany(type => Tabloid, tabloid => tabloid.workspace)
+  tabloids: Tabloid[];
+
+  @OneToMany(type => Visit, visit => visit.workspace, { onDelete: 'NO ACTION' })
+  visits: Visit[];
+
+  @OneToOne(
+    () => SystemParametrizations,
+    systemParametrizations => systemParametrizations.workspace
+  )
+  systemParametrizations: SystemParametrizations;
+
   @OneToMany(
     type => ResearchWithStep,
     researchWithStep => researchWithStep.workspace
