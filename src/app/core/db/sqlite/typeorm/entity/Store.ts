@@ -162,5 +162,5 @@ export class Store {
 
     @ManyToOne(type => Workspace, workspace => workspace.user)
     @JoinColumn({ name: 'workspaceId' })
-    workspace: Workspace;
+    workspace: Relation<Workspace>;
 }

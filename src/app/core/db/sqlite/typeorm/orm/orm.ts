@@ -1,7 +1,7 @@
+import "reflect-metadata";
 import { CapacitorSQLite, SQLiteConnection } from '@capacitor-community/sqlite';
 import { User } from '@dbentities/User';
 import { Store } from '@dbentities/Store';
-import "reflect-metadata";
 import { Workspace } from 'src/app/core/db/sqlite/typeorm/entity/Workspace';
 import { environment } from 'src/environments/environment';
 import { DataSource, DataSourceOptions } from "typeorm";
@@ -14,6 +14,8 @@ import { ComboDealsProducts } from '@dbentities/ComboDealsProducts';
 import { Filters } from '@dbentities/Filters';
 import { MetricasMdtr } from '@dbentities/MetricasMdtr';
 import { DeadlinePayment } from '@dbentities/DeadlinePayment';
+import { ComboDeals } from "@dbentities/ComboDeals";
+import { DistributorsPaymentDeadline } from "@dbentities/DistributorsPaymentDeadline";
 
 export class OrmProvider {
   private dataSource: DataSource;
@@ -30,7 +32,8 @@ export class OrmProvider {
       database: databaseName,
       entities: [
         Store, User, Workspace, ResearchWithStepField, StoreRoute, BaseBusinessCondition, Theme,
-        Content, ComboDealsProducts, Filters, MetricasMdtr, DeadlinePayment
+        Content, ComboDealsProducts, Filters, MetricasMdtr, DeadlinePayment,
+        ComboDeals, DistributorsPaymentDeadline
       ],
       migrationsRun: false,
       synchronize: true,
@@ -43,13 +46,6 @@ export class OrmProvider {
     
     await this.dataSource.initialize();    
     await this.dataSource.runMigrations({ transaction: 'all' });
-
-    console.log((await this.dataSource.manager.getRepository(Workspace)
-    .createQueryBuilder('wrk')
-    .innerJoinAndSelect('wrk.stores', 'stores')
-    .where('wrk.id = :workspaceId', {workspaceId: 1})
-    .getMany())
-    );    
     
     return this.sqliteConnection;
   }

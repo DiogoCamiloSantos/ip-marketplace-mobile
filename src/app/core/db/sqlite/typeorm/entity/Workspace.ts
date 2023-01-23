@@ -8,6 +8,7 @@ import {
   Relation
 } from "typeorm";
 import { IUser } from "../interfaces/User";
+import { ComboDeals } from "./ComboDeals";
 import { EntityEnum } from "./EntityEnum";
 import { Store } from "./Store";
 import { StoreRoute } from "./StoreRoute";
@@ -16,6 +17,17 @@ import { User } from "./User";
 
 @Entity(EntityEnum.WORKSPACE)
 export class Workspace {
+
+
+  @OneToMany(type => ComboDeals, combo => combo.workspace)
+  combos: ComboDeals[];
+
+  // @OneToMany(
+  //   type => MixDistributors,
+  //   mixDistributor => mixDistributor.workspace
+  // )
+  // mixDistributors: MixDistributors[];
+
   @PrimaryGeneratedColumn({
     name: "id"
   })

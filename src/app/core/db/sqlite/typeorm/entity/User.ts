@@ -1,10 +1,16 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { ComboDeals } from "./ComboDeals";
 import { EntityEnum } from "./EntityEnum";
 import { Store } from "./Store";
 import { StoreRoute } from "./StoreRoute";
 
 @Entity(EntityEnum.USERS)
 export class User {
+
+
+  @OneToMany(() => ComboDeals, combo => combo.user)
+  combos: ComboDeals[];
+
     @PrimaryGeneratedColumn({
         name: "id"
       })
