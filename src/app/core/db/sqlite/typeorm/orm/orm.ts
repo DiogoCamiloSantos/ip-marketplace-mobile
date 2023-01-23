@@ -22,6 +22,9 @@ import { ProductsBaseDiscount } from "@dbentities/ProductsBaseDiscount";
 import { MixDUNDistributors } from "@dbentities/MixDUNDistributors";
 import { Research } from "@dbentities/Research";
 import { ResearchResponse } from "@dbentities/ResearchResponse";
+import { ShareOfShelf } from "@dbentities/ShareOfShelf";
+import { ResearchShareOfShelf } from "@dbentities/ResearchShareOfShelf";
+import { PdvRelatedToShareOfShelfResearch } from "@dbentities/PdvRelatedToShareOfShelfResearch";
 
 export class OrmProvider {
   private dataSource: DataSource;
@@ -40,7 +43,7 @@ export class OrmProvider {
         Store, User, Workspace, ResearchWithStepField, StoreRoute, BaseBusinessCondition, Theme,
         Content, ComboDealsProducts, Filters, MetricasMdtr, DeadlinePayment,
         ComboDeals, DistributorsPaymentDeadline, MixDistributors, Product, ProductsBaseDiscount,
-        MixDUNDistributors, Research, ResearchResponse
+        MixDUNDistributors, Research, ResearchResponse, ShareOfShelf, ResearchShareOfShelf, PdvRelatedToShareOfShelfResearch
       ],
       migrationsRun: false,
       synchronize: true,

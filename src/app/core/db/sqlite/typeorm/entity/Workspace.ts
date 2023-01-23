@@ -11,8 +11,11 @@ import { IUser } from "../interfaces/User";
 import { ComboDeals } from "./ComboDeals";
 import { EntityEnum } from "./EntityEnum";
 import { MixDistributors } from "./MixDistributors";
+import { PdvRelatedToShareOfShelfResearch } from "./PdvRelatedToShareOfShelfResearch";
 import { ProductsBaseDiscount } from "./ProductsBaseDiscount";
 import { Research } from "./Research";
+import { ResearchShareOfShelf } from "./ResearchShareOfShelf";
+import { ShareOfShelf } from "./ShareOfShelf";
 import { Store } from "./Store";
 import { StoreRoute } from "./StoreRoute";
 import { Theme } from "./Theme";
@@ -26,7 +29,6 @@ export class Workspace {
   )
   productsBaseDiscounts: Relation<ProductsBaseDiscount[]>;
 
-
   @OneToMany(type => ComboDeals, combo => combo.workspace)
   combos: ComboDeals[];
 
@@ -38,6 +40,15 @@ export class Workspace {
 
   @OneToMany(type => Research, research => research.workspace)
   researchs: Research[];
+  
+  @OneToMany(type => PdvRelatedToShareOfShelfResearch, pdvRelated => pdvRelated.workspace)
+  PdvRelatedToSearch: PdvRelatedToShareOfShelfResearch;
+
+  @OneToMany(type => ResearchShareOfShelf, share => share.workspace)
+  researchShareOfShelf: ResearchShareOfShelf;
+  
+  @OneToMany(type => ShareOfShelf, share => share.workspace)
+  shareOfShelf: ShareOfShelf;
 
   @PrimaryGeneratedColumn({
     name: "id"

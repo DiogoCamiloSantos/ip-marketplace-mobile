@@ -1,7 +1,10 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { ComboDeals } from "./ComboDeals";
 import { EntityEnum } from "./EntityEnum";
+import { PdvRelatedToShareOfShelfResearch } from "./PdvRelatedToShareOfShelfResearch";
 import { Research } from "./Research";
+import { ResearchShareOfShelf } from "./ResearchShareOfShelf";
+import { ShareOfShelf } from "./ShareOfShelf";
 import { Store } from "./Store";
 import { StoreRoute } from "./StoreRoute";
 
@@ -14,6 +17,15 @@ export class User {
 
   @OneToMany(() => Research, research => research.user)
   researchs: Research[];
+  
+  @OneToMany(type => PdvRelatedToShareOfShelfResearch, pdvRelated => pdvRelated.user)
+  PdvRelatedToSearch: PdvRelatedToShareOfShelfResearch[];
+  
+  @OneToMany(type => ResearchShareOfShelf, research => research.user)
+  researchShareOfShelf: ResearchShareOfShelf[];
+  
+  @OneToMany(type => ShareOfShelf, research => research.user)
+  shareOfShelf: ShareOfShelf[];
 
     @PrimaryGeneratedColumn({
         name: "id"
