@@ -1,10 +1,12 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { ComboDeals } from "./ComboDeals";
 import { EntityEnum } from "./EntityEnum";
 import { PdvRelatedToShareOfShelfResearch } from "./PdvRelatedToShareOfShelfResearch";
 import { Permission } from "./Permission";
 import { Preference } from "./Preference";
 import { Research } from "./Research";
+import { ResearchComplementary } from "./ResearchComplementary";
+import { ResearchComplementaryResponse } from "./ResearchComplementaryResponse";
 import { ResearchShareOfShelf } from "./ResearchShareOfShelf";
 import { ShareOfShelf } from "./ShareOfShelf";
 import { Store } from "./Store";
@@ -13,6 +15,19 @@ import { Syncronization } from "./Syncronization";
 
 @Entity(EntityEnum.USERS)
 export class User {
+
+    @OneToMany(
+      () => ResearchComplementaryResponse,
+      researchComplementaryResponse => researchComplementaryResponse.user
+    )
+    researchesComplementariesResponses: ResearchComplementaryResponse[];
+  
+
+    @OneToOne(
+      () => ResearchComplementary,
+      researchComplementary => researchComplementary.user
+    )
+    researchComplementary: ResearchComplementary;
 
     @OneToMany(type => Syncronization, syncronization => syncronization.user)
     syncronizations: Syncronization[];

@@ -1,6 +1,7 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn, Relation } from 'typeorm';
 import { EntityEnum } from './EntityEnum';
 import { Research } from './Research';
+import { ResearchComplementaryResponse } from './ResearchComplementaryResponse';
 import { Store } from './Store';
 import { User } from './User';
 import { Workspace } from './Workspace';
@@ -28,8 +29,8 @@ export class StoreRoute {
     // researchWithStep: ResearchWithStep;
 
 
-    // @OneToOne(() => ResearchComplementaryResponse, researchComplementaryResponse => researchComplementaryResponse.storeRoute)
-    // researchComplementaryResponse: ResearchComplementaryResponse;
+    @OneToOne(() => ResearchComplementaryResponse, researchComplementaryResponse => researchComplementaryResponse.storeRoute)
+    researchComplementaryResponse: ResearchComplementaryResponse;
 
     @PrimaryGeneratedColumn({
         name: 'id'

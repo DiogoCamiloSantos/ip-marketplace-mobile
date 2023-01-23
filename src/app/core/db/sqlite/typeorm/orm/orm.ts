@@ -28,6 +28,10 @@ import { PdvRelatedToShareOfShelfResearch } from "@dbentities/PdvRelatedToShareO
 import { Permission } from "@dbentities/Permission";
 import { Preference } from "@dbentities/Preference";
 import { Syncronization } from "@dbentities/Syncronization";
+import { ProductsDUN as ProductDUN } from "@dbentities/ProductsDUN";
+import { OrderTable } from "@dbentities/OrderTable";
+import { ResearchComplementary } from "@dbentities/ResearchComplementary";
+import { ResearchComplementaryResponse } from "@dbentities/ResearchComplementaryResponse";
 
 export class OrmProvider {
   private dataSource: DataSource;
@@ -47,7 +51,8 @@ export class OrmProvider {
         Content, ComboDealsProducts, Filters, MetricasMdtr, DeadlinePayment,
         ComboDeals, DistributorsPaymentDeadline, MixDistributors, Product, ProductsBaseDiscount,
         MixDUNDistributors, Research, ResearchResponse, ShareOfShelf, ResearchShareOfShelf, PdvRelatedToShareOfShelfResearch,
-        Permission, Preference, Syncronization
+        Permission, Preference, Syncronization, ProductDUN, OrderTable, ResearchComplementary, ResearchComplementaryResponse
+
       ],
       migrationsRun: false,
       synchronize: true,

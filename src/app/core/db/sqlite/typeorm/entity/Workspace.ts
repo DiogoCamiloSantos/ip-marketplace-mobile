@@ -15,6 +15,8 @@ import { PdvRelatedToShareOfShelfResearch } from "./PdvRelatedToShareOfShelfRese
 import { Permission } from "./Permission";
 import { ProductsBaseDiscount } from "./ProductsBaseDiscount";
 import { Research } from "./Research";
+import { ResearchComplementary } from "./ResearchComplementary";
+import { ResearchComplementaryResponse } from "./ResearchComplementaryResponse";
 import { ResearchShareOfShelf } from "./ResearchShareOfShelf";
 import { ShareOfShelf } from "./ShareOfShelf";
 import { Store } from "./Store";
@@ -24,6 +26,20 @@ import { User } from "./User";
 
 @Entity(EntityEnum.WORKSPACE)
 export class Workspace {
+
+  @OneToMany(
+    type => ResearchComplementaryResponse,
+    researchComplementaryResponse => researchComplementaryResponse.workspace
+  )
+  researchesComplementariesResponses: ResearchComplementaryResponse[];
+
+
+  @OneToOne(
+    () => ResearchComplementary,
+    researchComplementary => researchComplementary.user
+  )
+  researchComplementary: ResearchComplementary;
+
 
   @OneToMany(() => Permission, permission => permission.workspace)
   permissions: Permission[];
