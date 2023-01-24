@@ -1,0 +1,264 @@
+@import "../theme/variables.scss";
+@import "../../src/assets/styles/variables";
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+@import "../assets/styles/common";
+@import "../assets/styles/mixin";
+
+//region ION_TABS
+ion-tabs {
+  display: flex !important;
+
+  .tabbar {
+    background-color: #ffffff !important;
+    overflow-x: auto;
+    justify-content: flex-start !important;
+  }
+
+  .tab-button {
+    min-width: 80px !important;
+
+    &[aria-selected="true"] {
+      ion-icon[class*="custom-"]~.tab-button-text {
+        display: none;
+      }
+    }
+
+    ion-icon {
+      &[class*="custom-"] {
+        mask-size: contain;
+        mask-position: 50% 50%;
+        mask-repeat: no-repeat;
+        background: $blueSecondary;
+        width: 24px;
+        height: 24px;
+      }
+
+      // custom icons
+      &[class*="custom-home"] {
+        mask-image: url($img-path+"menu/home.svg");
+      }
+
+      &[class*="custom-cart"] {
+        mask-image: url($img-path+"menu/pedido.svg");
+      }
+
+      &[class*="custom-basket"] {
+        mask-image: url($img-path+"menu/visitas.svg");
+      }
+
+      &[class*="custom-routes"] {
+        mask-image: url($img-path+"menu/rotas.svg");
+      }
+
+      &[class*="custom-analytics"] {
+        mask-image: url($img-path+"menu/relatorios.svg");
+      }
+
+      &[class*="custom-cog"] {
+        mask-image: url($img-path+"menu/configuracoes.svg");
+      }
+
+      &[class*="custom-searchs"] {
+        mask-image: url($img-path+"menu/pesquisas.svg");
+      }
+    }
+
+    &[aria-selected="true"] {
+      ion-icon {
+        &[class*="custom-"] {
+          background: $bluePrimary;
+        }
+      }
+    }
+  }
+}
+
+//endregion
+
+ion-navbar {
+  .toolbar-background {
+    background: #0090c5;
+  }
+
+  .bar-button-default,
+  .toolbar-title {
+    color: #ffffff;
+  }
+}
+
+ion-toolbar {
+  .toolbar-background {
+    background: #0090c5;
+  }
+
+  .bar-button-default,
+  .toolbar-title {
+    color: #ffffff;
+  }
+}
+
+.loader-svg {
+  svg {
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+
+  .spinner {
+    width: 40px;
+    height: 40px;
+    margin: 15px auto -20px auto;
+    animation: contanim 2s linear infinite;
+  }
+
+  $colors: #5cbb4f,
+  #5cbb4f,
+  #2878e0,
+  #0c4da2;
+  $d: 175.6449737548828;
+
+  svg {
+    width: 100%;
+    height: 100%;
+
+    left: 0;
+    top: 0;
+    position: absolute;
+
+    transform: rotate(-90deg);
+
+    @for $i from 1 through 4 {
+      &:nth-child(#{$i}) circle {
+        stroke: nth($colors, $i);
+        stroke-dasharray: 1, 300;
+        stroke-dashoffset: 0;
+
+        animation: strokeanim 3s calc(0.2s * (#{$i})) ease infinite;
+        transform-origin: center center;
+      }
+    }
+  }
+
+  @keyframes strokeanim {
+    0% {
+      stroke-dasharray: 1, 300;
+      stroke-dashoffset: 0;
+    }
+
+    50% {
+      stroke-dasharray: 120, 300;
+      stroke-dashoffset: -$d / 3;
+    }
+
+    100% {
+      stroke-dasharray: 120, 300;
+      stroke-dashoffset: -$d;
+    }
+  }
+
+  @keyframes contanim {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+.error-alert {
+  ul {
+    padding-left: 10px;
+  }
+}
+
+.d-none {
+  display: none !important;
+}
+
+@include breakpoint(599px, "max") {
+  .select-pdv-modal {
+    select-pdv {
+      top: 20%;
+      left: 5%;
+      width: 90%;
+      height: 50%;
+    }
+  }
+}
+
+@include breakpoint(600px, "min") {
+  .select-pdv-modal {
+    select-pdv {
+      top: 25%;
+      left: 15%;
+      width: 70%;
+      height: 40%;
+    }
+  }
+}
+
+.select-pdv-modal {
+  background: rgba(0, 0, 0, 0.5) !important;
+  overflow: hidden;
+
+  select-pdv {
+    overflow: hidden;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+
+    ion-content {
+      .toolbar-top {
+        text-align: center;
+        color: #ffffff;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        font-size: 1.6rem;
+      }
+
+      .list-items {
+        margin-top: 44px;
+
+        ion-item {
+          background: transparent;
+        }
+
+        ion-item:first-child {
+          border-top: none;
+        }
+
+        ion-item:last-child {
+          margin-bottom: 44px;
+          border-bottom: none;
+        }
+      }
+
+      .toolbar-footer {
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+
+        ion-buttons {
+          display: flex;
+          justify-content: space-evenly;
+        }
+      }
+    }
+  }
+}
+
+.alert-sync {
+  ul {
+    text-align: left;
+  }
+}

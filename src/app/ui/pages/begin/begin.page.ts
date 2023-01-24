@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import { EnumNamesPage } from '@models/pages';
 import "reflect-metadata";
 
 @Component({
@@ -14,7 +15,7 @@ export class BeginPage {
     }
 
     advance() {
-        this.navCtrl.navigateForward("home").then();
+        this.navCtrl.navigateForward('workspaces').then();
     }
 
 

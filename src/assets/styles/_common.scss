@@ -1,0 +1,90 @@
+@import "mixin";
+@import "animate";
+
+.text-overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+  width: 100%;
+  white-space: nowrap;
+}
+
+.desconto {
+  text-decoration: line-through;
+  color: #AEAEAE;
+}
+
+.dot {
+  height: 12px;
+  width: 12px;
+  background-color: #BBBBBB;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.status-box {
+  height: 30px;
+  width: 100%;
+  line-height: 30px;
+  color: gray;
+}
+
+.atendimento-total, .status-success {
+  background: #2ECC71;
+}
+
+.atendimento-parcial {
+  background: yellow !important;
+}
+
+.nao-atendido {
+  background: #2C3E50 !important;
+}
+
+.aguardando-retorno, .status-not-sent {
+  background: #F1C40F !important;
+}
+
+.cancelado, .status-with-errors {
+  background: #E74C3C !important;
+}
+
+.status-sent {
+  background: rgb(55, 55, 198);
+}
+
+ion-modal {
+  .modal-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.loading {
+  -webkit-animation: rotation 2s infinite linear;
+  animation: rotation 2s infinite linear;
+}
+
+.loading-android {
+  -webkit-animation: rotationAndroid 2s infinite linear;
+  animation: rotationAndroid 2s infinite linear;
+}
+
+@keyframes rotation {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotationAndroid {
+  100% {
+    -webkit-transform: rotate(-360deg);
+    transform: rotate(-360deg);
+  }
+}

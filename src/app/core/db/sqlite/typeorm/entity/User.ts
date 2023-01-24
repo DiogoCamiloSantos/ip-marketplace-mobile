@@ -147,4 +147,5 @@ export class User {
     @OneToMany(type => StoreRoute, storeRoute => storeRoute.user)
     storeRoutes: StoreRoute[];
 
+    setor: string;
 }

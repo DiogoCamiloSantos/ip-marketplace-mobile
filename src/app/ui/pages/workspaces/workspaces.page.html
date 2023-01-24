@@ -1,0 +1,21 @@
+<ion-content>
+  <div class="search">
+      <form [formGroup]="searchForm">
+          <input type="text" placeholder="Workspace" id="focusOnEnter" autofocus formControlName="search">
+      </form>
+  </div>
+
+  <ion-list no-border>
+    <ion-item (click)="selectWorkspace(item)" *ngFor="let item of workspaces" [class.logged]="item.user">
+        <span class="name">{{item.name}}</span>
+        <span *ngIf="item.user">{{item.user.name}}</span>
+        <ion-icon item-end></ion-icon>
+    </ion-item>
+  </ion-list>
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button color="primary" (click)="sync()">
+      <ion-icon name="sync"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

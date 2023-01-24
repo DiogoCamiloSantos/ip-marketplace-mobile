@@ -2,7 +2,7 @@ import "reflect-metadata";
 import { CapacitorSQLite, SQLiteConnection } from '@capacitor-community/sqlite';
 import { User } from '@dbentities/User';
 import { Store } from '@dbentities/Store';
-import { Workspace } from 'src/app/core/db/sqlite/typeorm/entity/Workspace';
+import { Workspace } from '@dbentities/Workspace';
 import { environment } from 'src/environments/environment';
 import { DataSource, DataSourceOptions } from "typeorm";
 import { ResearchWithStepField } from '@dbentities/ResearchWithStepField';
@@ -75,10 +75,14 @@ export class OrmProvider {
     }
 
     this.dataSource = new DataSource(options);
-    
+
     await this.dataSource.initialize();    
     await this.dataSource.runMigrations({ transaction: 'all' });
-    
+
     return this.sqliteConnection;
   }
+
+  async getConnection(): Promise<DataSource> {
+    return await this.dataSource;
+  }  
 }

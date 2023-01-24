@@ -8,6 +8,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { OrmProvider } from './core/db/sqlite/typeorm/orm/orm';
 
+import "./core/extras/prototype";
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
