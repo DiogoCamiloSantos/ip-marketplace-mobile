@@ -1,14 +1,14 @@
 import { Injectable } from "@angular/core";
-import { User } from "@dbentities/User";
 import { StorageEnum } from "@models/enum";
 import { ProfileResponse } from "@models/profile";
 import { AuthenticationProvider } from "@providers/authentication/authentication";
 import { StorageProvider } from "@providers/storage/storage";
 import { DataSource, Repository } from "typeorm";
+import { User } from "../typeorm/entity/User";
 import { OrmProvider } from "../typeorm/orm/orm";
 
 @Injectable()
-export class UserRepository extends Repository<User> {
+export class UserRepository {
   private connection: DataSource;
   private repository: Repository<User>;
 
@@ -17,7 +17,6 @@ export class UserRepository extends Repository<User> {
     private auth: AuthenticationProvider,
     private storage: StorageProvider
   ) {
-    super(User, orm.getConnectionAsync().createEntityManager());
     this.initRepository().then();
   }
 
@@ -65,7 +64,10 @@ export class UserRepository extends Repository<User> {
   }
 
   private async initRepository() {
-    this.connection = await this.manager.connection;
+    this.connection = await this.orm.getConnection();
     this.repository = await this.connection.getRepository(User);
+
+    await this.connection.manager.query('PRAGMA journal_mode = MEMORY');
+    await this.connection.manager.query('PRAGMA synchronous = OFF');
   }
 }

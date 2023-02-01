@@ -23,7 +23,7 @@ export class WorkspacesPage implements OnInit {
   public workspacesCopy: Workspace[] = [];
   public searchForm: FormGroup;
   public loadingSync = false;
-  private focusOnEnter: HTMLElement;
+  private focusOnEnter: HTMLElement;         
   
   private load: HTMLIonLoadingElement;
 
@@ -38,23 +38,13 @@ export class WorkspacesPage implements OnInit {
 
   async ngOnInit() {
     this.prepareForm();
-
-    console.log('teste', 'teste');
-    
-
     this.focusOnEnter = document.getElementById("focusOnEnter");
 
-        this.workspaces = await this.workspaceRepository.getAll();
-      // console.log('workspaces', this.workspaces)
+    this.workspaces = await this.workspaceRepository.getAll();
 
-    // this.workspaces.sort((a: Workspace, b: Workspace) => {
-    //   return a.active === b.active ? 0 : a.active ? -1 : 1;
-    // });
-
-    // this.focusOnEnter.focus();
-    // (<any>window).Keyboard.show();
-
-    // this.load.dismiss().then();
+    if (this.workspaces.length == 0) {
+      this.sync();
+    }
   }
 
   async ionViewDidLoad() {

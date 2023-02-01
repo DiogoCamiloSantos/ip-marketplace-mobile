@@ -39,7 +39,7 @@ export class LoginRepository {
         userToSave.last_token = user.access_token;
         userToSave.username = username;
 
-        const userSaved = await this.userRepository.save(userToSave);
+        const userSaved = await this.userRepository.saveAccount(userToSave);
 
         this.storage.set(StorageEnum.AUTH, userSaved);
 

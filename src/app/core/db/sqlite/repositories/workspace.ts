@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Workspace } from '@dbentities/Workspace';
 import { StackError } from '@models/erros';
 import { AuthenticationProvider } from '@providers/authentication/authentication';
-import { DataSource, EntityRepository, In, Not, Repository } from 'typeorm';
+import { DataSource, In, Not, Repository } from 'typeorm';
+import { Workspace } from '../typeorm/entity/Workspace';
 import { OrmProvider } from '../typeorm/orm/orm';
 
 @Injectable()
-@EntityRepository(Workspace)
-export class WorkspaceRepository extends Repository<Workspace> {
+export class WorkspaceRepository {
     private connection: DataSource;
     private repository: Repository<Workspace>;
 
@@ -15,12 +14,18 @@ export class WorkspaceRepository extends Repository<Workspace> {
         public orm: OrmProvider,
         public auth: AuthenticationProvider
     ) {        
-        super(Workspace, orm.getConnectionAsync().createEntityManager());
+
     }
 
     private async initRepository() {
-        this.connection = await this.manager.connection;
-        this.repository = await this.connection.getRepository<Workspace>("Workspace");
+        if (!!this.connection && this.repository)
+            return;
+
+        this.connection = await this.orm.getConnection();
+        this.repository = await this.connection.getRepository(Workspace);
+
+        await this.connection.manager.query('PRAGMA journal_mode = MEMORY');
+        await this.connection.manager.query('PRAGMA synchronous = OFF');
     }
 
     public async alter(workspace: Workspace): Promise<any> {
