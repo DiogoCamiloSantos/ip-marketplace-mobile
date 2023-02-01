@@ -3,13 +3,13 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'home',
-    loadChildren: () => import('./ui/pages/home/home.module').then( m => m.HomePageModule)
-  },
-  {
     path: '',
     redirectTo: 'begin',
     pathMatch: 'full'
+  },
+  {
+    path: 'home',
+    loadChildren: () => import('./ui/pages/home/home.module').then( m => m.HomePageModule)
   },
   {
     path: 'begin',
@@ -18,8 +18,11 @@ const routes: Routes = [
   {
     path: 'workspaces',
     loadChildren: () => import('./ui/pages/workspaces/workspaces.module').then( m => m.WorkspacesPageModule)
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./ui/pages/login/login.module').then( m => m.LoginPageModule)
   }
-
 ];
 
 @NgModule({

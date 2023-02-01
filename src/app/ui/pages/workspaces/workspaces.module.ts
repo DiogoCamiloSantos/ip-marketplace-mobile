@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, NavParams } from '@ionic/angular';
 
 import { WorkspacesPageRoutingModule } from './workspaces-routing.module';
 
@@ -22,16 +22,16 @@ import { HttpClientModule } from '@angular/common/http';
     IonicModule,
     WorkspacesPageRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    // HttpClientModule
   ],
   declarations: [WorkspacesPage],
   providers: [
     WorkspaceRepository,
     WorkspacesService,
-    ApiProvider,
-    HelperProvider,
+    // ApiProvider, 
+    // HelperProvider,
     StorageProvider,
-    AuthenticationProvider
+    // AuthenticationProvider
   ]
 })
 export class WorkspacesPageModule {}

@@ -1,0 +1,152 @@
+:host {
+    width: 100%;
+    display: block;
+    text-align: center;
+    padding: 0 15px;
+  
+    $height: 42px;
+    $maxWidth: 300px;
+  
+    $initialColor: #8FD13F;
+    $errorColor: #FB797E;
+  
+    /* Button container */
+    .progress-button {
+      position: relative;
+      display: inline-block;
+      text-align: center;
+      max-width: $maxWidth;
+      width: 100%;
+  
+      button {
+        display: block;
+        margin: 0 auto;
+        padding: 0;
+        max-width: $maxWidth;
+        width: 100%;
+        height: $height;
+        border: 3px solid $initialColor;
+        border-radius: 40px;
+        letter-spacing: 1px;
+        font-size: 16px;
+        background-color: $initialColor;
+        -webkit-tap-highlight-color: transparent;
+        transition: background-color 0.3s, color 0.3s, width 0.3s, border-width 0.3s, border-color 0.3s;
+        color: #fff;
+  
+        &:focus {
+          outline: none;
+        }
+  
+        /* Text (transition for when returning to initial state) */
+        span {
+          transition: opacity 0.3s 0.1s;
+        }
+      }
+  
+      /* Common style of SVGs */
+      svg {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        -webkit-transform: translateX(-50%);
+        transform: translateX(-50%);
+        pointer-events: none;
+  
+        path {
+          opacity: 0;
+          fill: none;
+        }
+  
+        &.progress-circle {
+          width: $height;
+          height: $height;
+  
+          path {
+            stroke: $initialColor;
+            stroke-width: 6px;
+          }
+        }
+  
+        &.checkmark,
+        &.cross {
+          width: 42px;
+  
+          path {
+            stroke: #fff;
+            stroke-linecap: round;
+            stroke-width: 4px;
+            -webkit-transition: opacity 0.1s;
+            transition: opacity 0.1s;
+          }
+        }
+      }
+  
+      /* Loading, success and error effects */
+      &.loading-button {
+        button {
+          width: $height; /* make a circle */
+          border-color: #666;
+          background-color: transparent;
+  
+          span {
+            -webkit-transition: opacity 0.15s;
+            transition: opacity 0.15s;
+          }
+        }
+      }
+  
+      &.loading-button,
+      &.success,
+      &.error {
+        span {
+          opacity: 0; /* keep it hidden in all states */
+        }
+  
+        svg {
+          &.progress-circle,
+          &.checkmark,
+          &.cross {
+            path {
+              opacity: 1;
+              transition: stroke-dashoffset 0.3s;
+            }
+          }
+        }
+      }
+  
+      &.success,
+      &.error {
+        button {
+          transition: background-color 0.3s, width 0.3s, border-width 0.3s;
+        }
+      }
+  
+      &.success {
+        button {
+          border-color: $initialColor;
+          background-color: $initialColor;
+        }
+  
+        .progress-circle {
+          path {
+            stroke: $initialColor;
+          }
+        }
+      }
+  
+      &.error {
+        button {
+          border-color: $errorColor;
+          background-color: $errorColor;
+        }
+  
+        .progress-circle {
+          path {
+            stroke: $errorColor;
+          }
+        }
+      }
+    }
+  }
+  

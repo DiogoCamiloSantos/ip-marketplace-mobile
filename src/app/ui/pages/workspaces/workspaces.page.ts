@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from "@angular/forms";
-import { Workspace } from "@dbentities/Workspace";
 import { LoadingController, LoadingOptions, NavController } from "@ionic/angular";
 import { StorageEnum } from "@models/enum";
 import { EnumNamesPage } from "@models/pages";
@@ -10,6 +9,7 @@ import { StorageProvider } from "@providers/storage/storage";
 import { WorkspaceRepository } from "@repositories/workspace";
 import { WorkspacesService } from "@services/workspaces";
 import { debounceTime } from "rxjs/operators";
+import { Workspace } from 'src/app/core/db/sqlite/typeorm/entity/Workspace';
 import { CONFIG } from "src/app/core/values/config";
 
 
@@ -39,10 +39,13 @@ export class WorkspacesPage implements OnInit {
   async ngOnInit() {
     this.prepareForm();
 
+    console.log('teste', 'teste');
+    
+
     this.focusOnEnter = document.getElementById("focusOnEnter");
 
         this.workspaces = await this.workspaceRepository.getAll();
-      console.log('workspaces', this.workspaces)
+      // console.log('workspaces', this.workspaces)
 
     // this.workspaces.sort((a: Workspace, b: Workspace) => {
     //   return a.active === b.active ? 0 : a.active ? -1 : 1;
@@ -81,21 +84,21 @@ export class WorkspacesPage implements OnInit {
 
     if (workspace) {
       if (item.user && workspace.id === item.id && this.auth.isLogged) {
-        return this.navCtrl.navigateForward(EnumNamesPage.TABS_PAGE).then();
+        return this.navCtrl.navigateForward(EnumNamesPage.TABS).then();
       } else if (item.user && workspace.id !== item.id) {
         this.storage.set(StorageEnum.AUTH, item.user);
         return this.navCtrl
-          .navigateRoot(EnumNamesPage.LOGIN_ALREADY_LOGGED_PAGE)
+          .navigateRoot(EnumNamesPage.LOGIN_ALREADY_LOGGED)
           .then();
       }
     } else if (item.user) {
       this.storage.set(StorageEnum.AUTH, item.user);
       return this.navCtrl
-        .navigateRoot(EnumNamesPage.LOGIN_ALREADY_LOGGED_PAGE)
+        .navigateRoot(EnumNamesPage.LOGIN_ALREADY_LOGGED)
         .then();
     }
 
-    return this.navCtrl.navigateForward(EnumNamesPage.LOGIN_PAGE).then();
+    return this.navCtrl.navigateForward(EnumNamesPage.Login).then();
   }
 
   ionViewDidEnter(): void {

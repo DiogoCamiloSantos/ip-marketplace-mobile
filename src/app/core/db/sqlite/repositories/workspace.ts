@@ -2,26 +2,28 @@ import { Injectable } from '@angular/core';
 import { Workspace } from '@dbentities/Workspace';
 import { StackError } from '@models/erros';
 import { AuthenticationProvider } from '@providers/authentication/authentication';
-import { DataSource, In, Not, Repository, UpdateResult } from 'typeorm';
+import { DataSource, EntityRepository, In, Not, Repository } from 'typeorm';
 import { OrmProvider } from '../typeorm/orm/orm';
 
 @Injectable()
-export class WorkspaceRepository {
+@EntityRepository(Workspace)
+export class WorkspaceRepository extends Repository<Workspace> {
     private connection: DataSource;
     private repository: Repository<Workspace>;
 
     constructor(
-        private orm: OrmProvider,
+        public orm: OrmProvider,
         public auth: AuthenticationProvider
-    ) {
+    ) {        
+        super(Workspace, orm.getConnectionAsync().createEntityManager());
     }
 
     private async initRepository() {
-        this.connection = await this.orm.getConnection();
+        this.connection = await this.manager.connection;
         this.repository = await this.connection.getRepository<Workspace>("Workspace");
     }
 
-    public async update(workspace: Workspace): Promise<any> {
+    public async alter(workspace: Workspace): Promise<any> {
         await this.initRepository();
 
         try {
@@ -37,11 +39,9 @@ export class WorkspaceRepository {
         try {
             await this.initRepository();
 
-            return this.repository.find({
-                where: {
-                  deleted: false
-                }
-              });
+            return this.connection.manager.createQueryBuilder(Workspace, "workspace").select()
+                .where("workspace.deleted = :deleted", { deleted: false })
+                .getMany();
 
         } catch (error) {
             return Promise.reject(error);

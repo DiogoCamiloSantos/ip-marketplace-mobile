@@ -370,4 +370,6 @@ export function hexToRgbA(hex, opacity) {
       ")"
     );
   }
+
+  return '';
 }

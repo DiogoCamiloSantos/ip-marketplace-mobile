@@ -1,0 +1,26 @@
+<div class="progress-button"
+     [class.loading-button]="loading"
+     [class.success]="success"
+     [class.error]="error"
+>
+    <button (click)="start()">
+        <span>Login</span>
+    </button>
+
+    <svg class="progress-circle" viewBox="0 0 70 70">
+        <path d="M35 2.5a32.4 32.4 0 1 1 0 65 32.4 32.4 0 1 1 0-65z"></path>
+    </svg>
+
+    <!-- checkmark to show on success -->
+    <svg class="checkmark" viewBox="0 0 70 70">
+        <path d="M31.5 46.5l15.3-23.2M31.5 46.5L23 39.4"/>
+    </svg>
+
+    <!-- cross to show on error -->
+    <svg class="cross" viewBox="0 0 70 70">
+        <path d="M35,35l-9.3-9.3"/>
+        <path d="M35,35l9.3,9.3"/>
+        <path d="M35,35l-9.3,9.3"/>
+        <path d="M35,35l9.3-9.3"/>
+    </svg>
+</div><!-- /progress-button -->

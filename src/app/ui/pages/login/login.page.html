@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-row *ngIf="!fromModal">
+    <ion-col>
+      <div class="workspace">
+        <button (click)="goToWorkspace()">
+          <img alt="Workspace" src="../../../../assets/images/login/workspace.svg">
+        </button>
+      </div>
+    </ion-col>
+  </ion-row>
+  <ion-row *ngIf="fromModal && !noClose">
+    <button class="btn-close-modal">
+      <ion-icon name="close"></ion-icon>
+    </button>
+  </ion-row>
+</ion-header>
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+        <div class="login">
+          <div class="logo">
+            <img src="../../../../assets/images/splash/pharmalink.svg" alt="Pharmalink">
+          </div>
+          <div class="form">
+            <form [formGroup]="loginForm" (submit)="login()">
+              <ion-list>
+                <ion-item>
+                  <ion-label>
+                    <ion-icon name="person"></ion-icon>
+                  </ion-label>
+                  <ion-input placeholder="Usuário" formControlName="user" type="text" name="user">
+                  </ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label>
+                    <ion-icon name="key"></ion-icon>
+                  </ion-label>
+                  <ion-input placeholder="Senha" [type]="passwordType" clearOnEdit="false" formControlName="password"
+                    name="senha"></ion-input>
+                  <ion-icon item-end [name]="passwordIcon" class="passwordIcon" (click)='hideShowPassword()'></ion-icon>
+                </ion-item>
+              </ion-list>
+              <components-circular-button [status]="status"></components-circular-button>
+              <div (click)="forgetPassword()" *ngIf="!fromModal" class="forgetPassword">
+                <button>
+                  Esqueci minha senha
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-footer>
+  <div *ngIf="isProdConfig" class="version">
+    <label>Versão: {{version}}</label>
+  </div>
+  <div *ngIf="!isProdConfig" class="version-dev">
+    <label>Versão: {{version}}</label>
+  </div>
+  <div class="workspace-name">
+    <label>Workspace: {{workspaceName}}</label>
+  </div>
+</ion-footer>

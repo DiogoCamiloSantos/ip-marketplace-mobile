@@ -118,7 +118,7 @@ export class AuthenticationProvider {
         };
 
         if (goToLogin) {
-            await this.navCtrl.navigateRoot(EnumNamesPage.LOGIN_PAGE);
+            await this.navCtrl.navigateRoot(EnumNamesPage.Login);
         } else {
             await this.showLoginPage();
         }

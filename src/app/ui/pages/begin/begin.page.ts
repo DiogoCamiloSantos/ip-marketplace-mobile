@@ -15,9 +15,6 @@ export class BeginPage {
     }
 
     advance() {
-        this.navCtrl.navigateForward('workspaces').then();
+        this.navCtrl.navigateForward(EnumNamesPage.Workspaces).then();
     }
-
-
-
 }

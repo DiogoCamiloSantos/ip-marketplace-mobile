@@ -42,6 +42,9 @@
       ],
       "@repositories/*": [
         "src/app/core/db/sqlite/repositories/*"
+      ],
+      "@components/*": [
+        "src/app/ui/components/*"
       ]
     }
   },

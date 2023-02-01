@@ -10,19 +10,18 @@ import { OrmProvider } from './core/db/sqlite/typeorm/orm/orm';
 })
 
 export class AppComponent implements OnInit {
-  private sqliteConnection: SQLiteConnection;
 
   constructor(
     private orm: OrmProvider
   ) {}
 
   async ngOnInit(): Promise<void> {
-    this.sqliteConnection = await this.orm.initialize();
+    await this.orm.initialize();
   }
 
   @HostListener('window:beforeunload')
   @HostListener('window:pagehide')
-  private onBeforeUnload() {
-    this.sqliteConnection.closeAllConnections();
+  private async onBeforeUnload() {
+    await this.orm.closeConnection();
   }
 }

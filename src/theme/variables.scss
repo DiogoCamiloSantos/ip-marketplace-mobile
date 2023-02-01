@@ -4,6 +4,32 @@
 
 $img-path: '../../src/assets/images/';
 
+
+// App iOS Variables
+// --------------------------------------------------
+// iOS only Sass variables can go here
+
+
+$tabs-ios-tab-icon-color-active: #488aff;
+$tabs-ios-tab-text-color-active: #488aff;
+
+$alert-ios-radio-label-text-color: black;
+$alert-ios-radio-label-text-color-checked: gray;
+$alert-ios-button-text-color: black;
+
+
+// App Material Design Variables
+// --------------------------------------------------
+// Material Design only Sass variables can go here
+
+$tabs-md-tab-icon-color-active: #488aff;
+$tabs-md-tab-text-color-active: #488aff;
+
+$alert-md-radio-label-text-color: black;
+$alert-md-radio-label-text-color-checked: gray;
+$alert-md-button-text-color: black;
+
+
 /** Ionic CSS Variables **/
 :root {
   /** primary **/

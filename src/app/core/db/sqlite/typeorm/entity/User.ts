@@ -137,7 +137,8 @@ export class User {
     lastActive: Date;
 
     @Column({
-        name: "descricaoPerfil"
+        name: "descricaoPerfil",
+        nullable: true
     })
     descricaoPerfil: string;
 
